@@ -2,19 +2,19 @@
 
 
 ###
-# CentOS 7
-# 188.226.198.8
+# openSUSE 
+# 192.168.56.120
 ###
 
+zypper in postgresql postgresql-server postgresql-contrib
+zypper in vsftpd
 
-rpm -Uvh http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-1.noarch.rpm
-yum install postgresql94-server postgresql94-contrib
-
-# Systemd
-/usr/pgsql-9.4/bin/postgresql94-setup initdb
-systemctl enable postgresql-9.4
-systemctl start postgresql-9.4
-# Systemd
+# vsftpd
+useradd assa
+passwd assa
+mkdir /home/assa ; chown -R assa /home/assa
+sed -i 's/#seccomp_sandbox=NO/seccomp_sandbox=NO/g' /etc/vsftpd.conf 
+sed -i '/write_enable=/s/NO/YES/' /etc/vsftpd.conf 
 
 # Создание базы и пользователя (работаем от пользователя postgres)
 createuser assa
