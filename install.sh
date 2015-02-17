@@ -26,5 +26,6 @@ sed -i 's/#log_min_duration_statement = -1/log_min_duration_statement = 0/g' /va
 
 createuser assa
 createdb -O assa assa
-psql assa < 1_\(Cre_main\).SQL
 
+# psql
+psql -c "ALTER USER assa WITH PASSWORD 'assa';"
